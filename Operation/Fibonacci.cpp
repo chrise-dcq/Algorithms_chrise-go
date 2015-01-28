@@ -1,12 +1,12 @@
 /*
-fibonacci����
-�ص㣺 
+fibonacci数列
+特点： 
              f(n) = f(n-1) + f(n-2)    if n>1 
              f(n) = n                  if n = 0,1 
 */
 
 
-//�ݹ�ⷨ
+//递归解法
 int fibonacci(int n)
 {
 	if(n <= 0) 
@@ -15,7 +15,7 @@ int fibonacci(int n)
 }
 
 
-//�ǵݹ�ⷨ
+//非递归解法
 int[] fibonacci(int n) { 
     int fib[n]={0}; 
 

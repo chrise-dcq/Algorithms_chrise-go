@@ -1,5 +1,5 @@
 
-/*------È«ÅÅÁĞ----------*/
+/*------å…¨æ’åˆ—----------*/
 template <typename T>
 void perm(T array[], int k, int m)
 {

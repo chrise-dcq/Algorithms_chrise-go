@@ -1,23 +1,23 @@
-//------´®µÄ¶Ñ·ÖÅä´æ´¢±íÊ¾------
+//------ä¸²çš„å †åˆ†é…å­˜å‚¨è¡¨ç¤º------
 typedef struct {
-	char *ch;       //ÈôÊÇ¿Õ´®£¬Ôò°´´®³¤·ÖÅä´æ´¢Çø£¬·ñÔòchÎªNULL
-	int  length;    //´®³¤¶È
+	char *ch;       //è‹¥æ˜¯ç©ºä¸²ï¼Œåˆ™æŒ‰ä¸²é•¿åˆ†é…å­˜å‚¨åŒºï¼Œå¦åˆ™chä¸ºNULL
+	int  length;    //ä¸²é•¿åº¦
 } HString;
 
-//Éú³ÉÒ»¸öÆäÖµµÈÓÚ´®³£Á¿charsµÄ´®T
+//ç”Ÿæˆä¸€ä¸ªå…¶å€¼ç­‰äºä¸²å¸¸é‡charsçš„ä¸²T
 void StrAssign(HString &T,char *chars) {
 	int i=0,j;
 	char c;
 	if(T.ch)
 		free(T.ch);
-	for(i=0, c=chars; c; ++i,++c) ; //ÇócharsµÄ³¤¶Èi
+	for(i=0, c=chars; c; ++i,++c) ; //æ±‚charsçš„é•¿åº¦i
 	if(!i) {
 		T.ch = NULL;
 		T.length = 0;
 	}
 	else {
 		if(!(T.ch = (char *)malloc(i*sizeof(char)))) {
-			cout<<"ÖØĞÂ·ÖÅä¿Õ¼äÊ§°Ü£¡"<<endl;
+			cout<<"é‡æ–°åˆ†é…ç©ºé—´å¤±è´¥ï¼"<<endl;
 			return;
 		}
 		for(j=0; j<i; ++j) {
@@ -25,17 +25,17 @@ void StrAssign(HString &T,char *chars) {
 		}
 		T.length = i;
 	}
-	cout<<"Éú³É´®T£¡"<<endl;
+	cout<<"ç”Ÿæˆä¸²Tï¼"<<endl;
 }
 
 
-//·µ»ØSµÄÔªËØ¸öÊı£¬³ÆÎª´®µÄ³¤¶È
+//è¿”å›Sçš„å…ƒç´ ä¸ªæ•°ï¼Œç§°ä¸ºä¸²çš„é•¿åº¦
 int StrLength(HString S) {
 	return S.length;
 }
 
-//±È½ÏÁ½¸ö´®µÄ´óĞ¡
-//ÈôS>T,Ôò·µ»ØÖµ>0£»ÈôS=T,Ôò·µ»ØÖµ=0£»ÈôS<T,Ôò·µ»ØÖµ<0
+//æ¯”è¾ƒä¸¤ä¸ªä¸²çš„å¤§å°
+//è‹¥S>T,åˆ™è¿”å›å€¼>0ï¼›è‹¥S=T,åˆ™è¿”å›å€¼=0ï¼›è‹¥S<T,åˆ™è¿”å›å€¼<0
 int StrCompare(HString S,HString T) {
 	for(i=0; i<S.length && i<T.length; ++i) {
 		if(S.ch[i] != T.ch[i])
@@ -44,47 +44,47 @@ int StrCompare(HString S,HString T) {
 	return S.length-T.length
 }
 
-//½«´®SÇå¿Õ
+//å°†ä¸²Sæ¸…ç©º
 void ClearString(HString &S) {
 	if(S.ch) {
 		free(S.ch);
 		S.ch = NULL;
 	}
 	S.length = 0;
-	count<<"´®S±»Çå¿Õ"<<endl;
+	count<<"ä¸²Sè¢«æ¸…ç©º"<<endl;
 }
 
 
-//ÔÚ´®SµÄµÚpos¸ö×Ö·ûÇ°²åÈë´®T
-//³õÊ¼Ìõ¼ş£º´®SºÍ´®T¶¼´æÔÚ£¬1<StrLength(S)+1
+//åœ¨ä¸²Sçš„ç¬¬posä¸ªå­—ç¬¦å‰æ’å…¥ä¸²T
+//åˆå§‹æ¡ä»¶ï¼šä¸²Så’Œä¸²Téƒ½å­˜åœ¨ï¼Œ1<StrLength(S)+1
 void StrInsert (HString &S, int pos, HString T) {
 	int i = 0, j = 0;
 	if(pos < 0 || pos > S.length+1) {
-		cout<<"Î»ÖÃÖ¸¶¨²»ºÏ·¨£¬ÇëÖØĞÂ¼ì²é£¡"<<endl;
+		cout<<"ä½ç½®æŒ‡å®šä¸åˆæ³•ï¼Œè¯·é‡æ–°æ£€æŸ¥ï¼"<<endl;
 		return;
 	}
-	if(T.length) {    //T·Ç¿Õ£¬ÔòÖØĞÂ·ÖÅä¿Õ¼ä£¬²åÈëT
+	if(T.length) {    //Téç©ºï¼Œåˆ™é‡æ–°åˆ†é…ç©ºé—´ï¼Œæ’å…¥T
 		if( !(S.ch =(char *)realloc(S.ch, (S.length+T.length)*sizeof(char)))) {
-			cout<<"ÖØĞÂ·ÖÅä¿Õ¼äÊ§°Ü£¡"<<endl;
+			cout<<"é‡æ–°åˆ†é…ç©ºé—´å¤±è´¥ï¼"<<endl;
 			return;
 		}
-		for (i = S.length-1;i >= pos-1 ;--i)    //Îª²åÈëTÌÚ³öÎ»ÖÃ
+		for (i = S.length-1;i >= pos-1 ;--i)    //ä¸ºæ’å…¥Tè…¾å‡ºä½ç½®
 			S.ch[i+T.length] = S.ch[i];
-		//S.ch[pos-1..pos+T.length-2] = T.ch[0..T.length-1]   //²åÈëT
+		//S.ch[pos-1..pos+T.length-2] = T.ch[0..T.length-1]   //æ’å…¥T
 		for (j=0;j<=T.length-1;++j) {
 			S.ch[pos-1+j] = T.ch[j];
 		}
 			S.length += T.length;
 	}
-	cout<<"²åÈëÍê±Ï£¡"<<endl;
+	cout<<"æ’å…¥å®Œæ¯•ï¼"<<endl;
 }
 
-//ÓÃT·µ»ØÓÉS1ºÍS2Á¬½Ó¶ø³ÉµÄĞÂ´®
+//ç”¨Tè¿”å›ç”±S1å’ŒS2è¿æ¥è€Œæˆçš„æ–°ä¸²
 void Concat(HString &T, HString S1, HString S2) {
 	if(T.ch) 
-		free(T.ch);     //ÊÍ·Å¾É¿Õ¼ä
+		free(T.ch);     //é‡Šæ”¾æ—§ç©ºé—´
 	if(!(T.ch=(char *)malloc((S1.length+S2.length)*sizeof(char)))) {
-			cout<<"ÖØĞÂ·ÖÅä¿Õ¼äÊ§°Ü£¡"<<endl;
+			cout<<"é‡æ–°åˆ†é…ç©ºé—´å¤±è´¥ï¼"<<endl;
 			return;
 	}
 	T.length = S1.length+S2.length;
@@ -97,17 +97,17 @@ void Concat(HString &T, HString S1, HString S2) {
 
 }
 
-//ÓÃSub·µ»Ø´®SµÄµÚpos¸ö×Ö·ûÆğ³¤¶ÈÎªlenµÄ×Ó´®
+//ç”¨Subè¿”å›ä¸²Sçš„ç¬¬posä¸ªå­—ç¬¦èµ·é•¿åº¦ä¸ºlençš„å­ä¸²
 HString SubString(HString &Sub, HString S,int pos,int len) {
 	if(pos<0 || pos>S.length || len<0 || len>S.length-pos+1) {
-		cout<<"Ö¸¶¨Êı¾İ²»ºÏÀí£¡"<<endl;
+		cout<<"æŒ‡å®šæ•°æ®ä¸åˆç†ï¼"<<endl;
 		return;
 	}
 	if(Sub.ch) 
 		free(Sub.ch);
 	if(!len) {
 		Sub.ch = NULL;
-		Sub.length = 0;  //¿Õ×Ó´®
+		Sub.length = 0;  //ç©ºå­ä¸²
 	}
 	else {
 		Sub.ch = (char *)malloc(len*sizeof(char));

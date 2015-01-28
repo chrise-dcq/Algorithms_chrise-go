@@ -4,18 +4,18 @@ using namespace std;
 
 typedef int QElemType; 
 
-//----µ¥Á´¶ÓÁĞ¡ª¡ª¶ÓÁĞµÄÁ´Ê½´æ´¢½á¹¹----------
-typedef struct QNode {    // Á´¶ÓÁĞµÄ½áµã
+//----å•é“¾é˜Ÿåˆ—â€”â€”é˜Ÿåˆ—çš„é“¾å¼å­˜å‚¨ç»“æ„----------
+typedef struct QNode {    // é“¾é˜Ÿåˆ—çš„ç»“ç‚¹
 	QElemType     data;
 	struct QNode  *next;
 } QNode,*QueuePtr;
 
-typedef struct {         //¶ÓÁĞ
-	QueuePtr  front;     //¶ÓÍ·Ö¸Õë
-	QueuePtr  rear;		 //¶ÓÎ²Ö¸Õë
+typedef struct {         //é˜Ÿåˆ—
+	QueuePtr  front;     //é˜Ÿå¤´æŒ‡é’ˆ
+	QueuePtr  rear;		 //é˜Ÿå°¾æŒ‡é’ˆ
 } LinkQueue;
 
-//-------»ù±¾²Ù×÷µÄº¯ÊıÔ­ĞÍËµÃ÷---------------
+//-------åŸºæœ¬æ“ä½œçš„å‡½æ•°åŸå‹è¯´æ˜---------------
 void InitQueue(LinkQueue &Q);
 void DestoryQueue(LinkQueue &Q);
 void ClearQueue(LinkQueue &Q);
@@ -26,18 +26,18 @@ void EnQueue(LinkQueue &Q,QElemType e);
 void DeQueue(LinkQueue &Q,QElemType &e);
 //void QueueTraverse(LinkQueue Q,visit());
 
-//¹¹ÔìÒ»¸ö¿Õ¶ÓÁĞQ
+//æ„é€ ä¸€ä¸ªç©ºé˜Ÿåˆ—Q
 void InitQueue(LinkQueue &Q) {
 	Q.front = Q.rear = (QueuePtr)malloc(sizeof(QNode));
 	if(!Q.front) {
-		cout<<"´æ´¢·ÖÅäÊ§°Ü£¡"<<endl;
+		cout<<"å­˜å‚¨åˆ†é…å¤±è´¥ï¼"<<endl;
 		return;
 	}
 	Q.front->next = NULL;
-	cout<<"¿Õ¶ÓÁĞ¹¹ÔìÍê³É£¡"<<endl;
+	cout<<"ç©ºé˜Ÿåˆ—æ„é€ å®Œæˆï¼"<<endl;
 }
 
-//Ïú»Ù¶ÓÁĞQ
+//é”€æ¯é˜Ÿåˆ—Q
 void DestoryQueue(LinkQueue &Q) {
 	while(Q.front) {
 		Q.rear = Q.front->next;
@@ -46,11 +46,11 @@ void DestoryQueue(LinkQueue &Q) {
 	}
 }
 
-//²åÈëÔªËØeÎªQµÄĞÂµÄ¶ÓÎ²ÔªËØ
+//æ’å…¥å…ƒç´ eä¸ºQçš„æ–°çš„é˜Ÿå°¾å…ƒç´ 
 void EnQueue(LinkQueue &Q,QElemType e) {
 	QNode *p = (QueuePtr)malloc(sizeof(QNode));
 	if(!p) {
-		cout<<"´æ´¢·ÖÅäÊ§°Ü£¡"<<endl;
+		cout<<"å­˜å‚¨åˆ†é…å¤±è´¥ï¼"<<endl;
 		return;
 	}
 	p->data = e;
@@ -59,18 +59,18 @@ void EnQueue(LinkQueue &Q,QElemType e) {
 	Q.rear = p;
 }
 
-//Èô¶ÓÁĞ²»Îª¿Õ£¬ÔòÉ¾³ıQµÄ¶ÓÍ·ÔªËØ£¬ÓÃe·µ»ØÆäÖµ
+//è‹¥é˜Ÿåˆ—ä¸ä¸ºç©ºï¼Œåˆ™åˆ é™¤Qçš„é˜Ÿå¤´å…ƒç´ ï¼Œç”¨eè¿”å›å…¶å€¼
 void DeQueue(LinkQueue &Q, QElemType &e) {
 	if(Q.front == Q.rear) {
-		cout<<"¶ÓÁĞÎª¿Õ£¡"<<endl;
+		cout<<"é˜Ÿåˆ—ä¸ºç©ºï¼"<<endl;
 		return;
 	}
 	QNode *p = (QueuePtr)malloc(sizeof(QNode));
 	if(!p) {
-		cout<<"´æ´¢·ÖÅäÊ§°Ü£¡"<<endl;
+		cout<<"å­˜å‚¨åˆ†é…å¤±è´¥ï¼"<<endl;
 		return;
 	}
-	p = Q.front->next;  //QÊÇÍ·½áµã£¬pÖ¸Ïò¶ÔÁĞµÚÒ»¸öÔªËØ
+	p = Q.front->next;  //Qæ˜¯å¤´ç»“ç‚¹ï¼ŒpæŒ‡å‘å¯¹åˆ—ç¬¬ä¸€ä¸ªå…ƒç´ 
 	e = p->data;
 	Q.front->next = p->next;
 	if(Q.rear == p) {
@@ -79,10 +79,10 @@ void DeQueue(LinkQueue &Q, QElemType &e) {
 	free(p);
 }
 
-//´òÓ¡¶ÓÁĞ
+//æ‰“å°é˜Ÿåˆ—
 void PrintQueue(LinkQueue &Q) {
 	if(Q.front == Q.rear) 
-		cout<<"¶ÓÁĞÎª¿Õ£¡"<<endl;
+		cout<<"é˜Ÿåˆ—ä¸ºç©ºï¼"<<endl;
 	while(Q.front != Q.rear) {
 		cout<<Q.front->next->data<<"--";
 		Q.front = Q.front->next;
@@ -96,19 +96,19 @@ int main() {
 	LinkQueue Q;
 	InitQueue(Q);
 
-	cout<<"ÇëÖ¸¶¨¶ÓÁĞÖĞµÄÔªËØ¸öÊı£º";
+	cout<<"è¯·æŒ‡å®šé˜Ÿåˆ—ä¸­çš„å…ƒç´ ä¸ªæ•°ï¼š";
 	cin>>n;
-	cout<<"ÇëÊäÈë"<<n<<"Êı¾İ£º";
+	cout<<"è¯·è¾“å…¥"<<n<<"æ•°æ®ï¼š";
 	for(i=1; i<=n; i++) {
 		cin>>num;
 		EnQueue(Q,num);
 	}
 	PrintQueue(Q);
 
-	cout<<"É¾³ı¶ÓÁĞÍ·ÔªËØ£º";
+	cout<<"åˆ é™¤é˜Ÿåˆ—å¤´å…ƒç´ ï¼š";
 	DeQueue(Q,node);
-	cout<<"É¾³ıµÄÊı¾İÎª:"<<node<<endl;
-	cout<<"¶ÓÁĞ¸üĞÂÎª:";
+	cout<<"åˆ é™¤çš„æ•°æ®ä¸º:"<<node<<endl;
+	cout<<"é˜Ÿåˆ—æ›´æ–°ä¸º:";
 	PrintQueue(Q);
 	return 0;
 }
