@@ -1,5 +1,5 @@
 #include "stdio.h"
-/*ÇóÕıÕûÊınµÄ»®·ÖÊı*/
+/*æ±‚æ­£æ•´æ•°nçš„åˆ’åˆ†æ•°*/
 int Divide_Integer(int n,int m)
 {
 	if(n<1 || m<1) 
@@ -17,7 +17,7 @@ int Divide_Integer(int n,int m)
 int main()
 {	
 	int n ;
-	printf("ÊäÈëÒ»¸öÕûÊı:");
+	printf("è¾“å…¥ä¸€ä¸ªæ•´æ•°:");
 	scanf("%d",&n);
-	printf("%dÓĞ%dÖÖ²»Í¬µÄ»®·Ö\n",n,Divide_Integer(n,n));
+	printf("%dæœ‰%dç§ä¸åŒçš„åˆ’åˆ†\n",n,Divide_Integer(n,n));
 }
