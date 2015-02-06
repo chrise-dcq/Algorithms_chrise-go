@@ -1,4 +1,4 @@
-//¶þ²æÊ÷ÏÈÐò¡¢ÖÐÐò¡¢ºóÐò±éÀúµÄ·ÇµÝ¹éËã·¨
+//äºŒå‰æ ‘å…ˆåºã€ä¸­åºã€åŽåºéåŽ†çš„éžé€’å½’ç®—æ³•
 
 #define MAXSIZE 100
 
@@ -8,14 +8,14 @@ typedef struct
 	int top;
 } SqStack;
 
-//ÏÈÐò±éÀú·ÇµÝ¹éËã·¨
+//å…ˆåºéåŽ†éžé€’å½’ç®—æ³•
 void PreOrderTraverse_Unrec(BiTree T) {
 	SqStack S;
 	StackInit(S);
 	p = T;
 	
 	while(p != null) || !StackEmpty(S)) {
-		while(p != null) {    //±éÀú×ó×ÓÊ÷
+		while(p != null) {    //éåŽ†å·¦å­æ ‘
 			Visit(p->data);
 			Push(S,p);
 			p = p->lchild;
@@ -27,26 +27,26 @@ void PreOrderTraverse_Unrec(BiTree T) {
 	}
 } //PreOrderTraverse_Unrec
 
-//ÖÐÐò±éÀú·ÇµÝ¹éËã·¨
+//ä¸­åºéåŽ†éžé€’å½’ç®—æ³•
 void InOrderTraverse_Unrec(BiTree T) {
 	SqStack S;
 	StackInit(S);
 	p = T;
 	
 	while(p != null) || !StackEmpty(S)) {
-		while(p != null) {    //±éÀú×ó×ÓÊ÷
+		while(p != null) {    //éåŽ†å·¦å­æ ‘
 			Push(S,p);
 			p = p->lchild;
 		}
 		if(!StackEmpty(S)) {
 			p = Pop(S);
-			Visit(p->data);   //·ÃÎÊ¸ù½Úµã
-			p = p->rchild;    //Í¨¹ýÏÂÒ»´ÎÑ­»·ÊµÏÖÓÒ×ÓÊ÷±éÀú
+			Visit(p->data);   //è®¿é—®æ ¹èŠ‚ç‚¹
+			p = p->rchild;    //é€šè¿‡ä¸‹ä¸€æ¬¡å¾ªçŽ¯å®žçŽ°å³å­æ ‘éåŽ†
 		}
 	}
 } //InOrderTraverse_Unrec
 
-//ºóÐò±éÀú·ÇµÝ¹éËã·¨
+//åŽåºéåŽ†éžé€’å½’ç®—æ³•
 #define MAXSIZE 100
 typedef enum{L,R} tagtype;
 typedef struct 
@@ -68,9 +68,9 @@ void PostOrderTraverse_Unrec(BiTree T) {
 	p = T;
 
 	do {
-		while (p != null) {  //±éÀú×ó×ÓÊ÷
+		while (p != null) {  //éåŽ†å·¦å­æ ‘
 			x.ptr = p;
-			x.tag = L;       //±ê¼ÇÎª×ó×ÓÊ÷
+			x.tag = L;       //æ ‡è®°ä¸ºå·¦å­æ ‘
 			Push(S,x);
 			p = p->lchild;
 		}
@@ -78,24 +78,24 @@ void PostOrderTraverse_Unrec(BiTree T) {
 		while(!StackEmpty(S) && S.Elem[S.top].tag == R) {
 			x = Pop(S);
 			p = x.ptr;
-			Visit(p->data);  //tagÎªR£¬±íÊ¾ÓÒ×ÓÊ÷·ÃÎÊÍê±Ï£¬¹Ê·ÃÎÊ¸ù½áµã
+			Visit(p->data);  //tagä¸ºRï¼Œè¡¨ç¤ºå³å­æ ‘è®¿é—®å®Œæ¯•ï¼Œæ•…è®¿é—®æ ¹ç»“ç‚¹
 		}
 		
 		if(!StackEmpty(S)) {
-			S.Elem[S.top].tag = R;   //±éÀúÓÒ×ÓÊ÷
+			S.Elem[S.top].tag = R;   //éåŽ†å³å­æ ‘
 			p = S.Elem[S.top].ptr->rchild;
 		}
 	}
 }//PostOrderTraverse_Unrec
 
 
-//²åÈëÔªËØeÎªÐÂµÄÕ»¶¥ÔªËØ
+//æ’å…¥å…ƒç´ eä¸ºæ–°çš„æ ˆé¡¶å…ƒç´ 
 void Push(SqStack &S, SElemType e) {
 	
-	if(S.top - S.base >= S.stacksize) {    //Õ»Âú£¬×·¼Ó´æ´¢¿Õ¼ä
+	if(S.top - S.base >= S.stacksize) {    //æ ˆæ»¡ï¼Œè¿½åŠ å­˜å‚¨ç©ºé—´
 		S.base = (SElemType *)realloc(S.base,(S.stacksize+STACK_INCREMENT)*sizeof(SElemType));
 		if(!S.base) {
-			cout<<"·ÖÅä¿Õ¼äÊ§°Ü£¡"<<endl;
+			cout<<"åˆ†é…ç©ºé—´å¤±è´¥ï¼"<<endl;
 			exit(OVERFLOW);
 		}
 		S.top = S.base + S.stacksize;
@@ -105,10 +105,10 @@ void Push(SqStack &S, SElemType e) {
 }			
 
 
-//ÈôÕ»²»¿Õ£¬ÔòÉ¾³ýSµÄÕ»¶¥ÔªËØ£¬ÓÃe·µ»ØÆäÖµ		
+//è‹¥æ ˆä¸ç©ºï¼Œåˆ™åˆ é™¤Sçš„æ ˆé¡¶å…ƒç´ ï¼Œç”¨eè¿”å›žå…¶å€¼		
 void Pop(SqStack *S, SElemType &e) {
 	if(S.top == S.base) {
-		cout<<"Õ»Îª¿Õ£¡"<<endl;
+		cout<<"æ ˆä¸ºç©ºï¼"<<endl;
 		return;
 	}
 	e = * --S.top;
